@@ -10,8 +10,7 @@ class TestKeywordPlugin(Star):
 
     @filter.regex(r"干什么")
     async def on_what_to_do(self, event: AstrMessageEvent):
-        """当消息包含「干什么」时触发"""
-        logger.info(f"检测到关键词: {event.message_str}")
+        logger.info(f"关键词测试插件被触发！消息: {event.message_str}")
         yield event.plain_result("是啊，干什么")
         event.stop_event()
 

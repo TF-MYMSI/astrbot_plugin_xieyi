@@ -1,4 +1,4 @@
-from astrbot.api.event import filter, AstrMessageEvent
+from astrbot.api.event import AstrMessageEvent
 from astrbot.api.star import Context, Star, register
 from astrbot.api import logger
 
@@ -25,8 +25,9 @@ class AgreementPlugin(Star):
         super().__init__(context)
         logger.info("协议签订插件已加载")
 
-    @filter.on_message()
-    async def on_private_message(self, event: AstrMessageEvent):
+    # ✅ 正确：没有装饰器，方法名必须是 on_message
+    async def on_message(self, event: AstrMessageEvent):
+        # 只处理私聊
         if event.get_message_type() != "private":
             return
         
